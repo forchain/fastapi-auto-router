@@ -47,12 +47,12 @@ class AutoRouter:
 
     def _get_module_path(self, file_path: str, routers_path: str) -> str:
         """Convert file path to module import path"""
-        # 获取相对于routers目录的路径
+        # Get the relative path to the routers directory
         relative_path = os.path.relpath(file_path, routers_path)
-        # 移除.py扩展名
+        # Remove the .py extension
         if relative_path.endswith('.py'):
             relative_path = relative_path[:-3]
-        # 将路径分隔符转换为点号
+        # Convert path separators to dots
         return relative_path.replace('/', '.').replace('\\', '.')
 
     def load_routers(self) -> None:
@@ -80,7 +80,7 @@ class AutoRouter:
                             self.main_router.include_router(module.router, prefix=prefix)
 
         finally:
-            # 清理sys.path
+            # Clean up sys.path
             sys.path.pop(0)
 
         # Include the main router in the FastAPI app
