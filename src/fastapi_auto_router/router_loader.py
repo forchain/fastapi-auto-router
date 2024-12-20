@@ -58,7 +58,7 @@ class AutoRouter:
     def load_routers(self) -> None:
         """Load all routers from the specified directory"""
         routers_path = os.path.abspath(self.routers_dir)
-        sys.path.insert(0, os.path.dirname(routers_path))
+        sys.path.insert(0, routers_path)
 
         try:
             for root, _, files in os.walk(routers_path):
@@ -71,7 +71,7 @@ class AutoRouter:
                         route_path = self._convert_path_to_route(relative_path)
                         
                         # Import the module
-                        module_path = f"routers.{self._get_module_path(file_path, routers_path)}"
+                        module_path = f"{self._get_module_path(file_path, routers_path)}"
                         module = importlib.import_module(module_path)
                         
                         # If module has router, include it
