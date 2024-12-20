@@ -1,0 +1,10 @@
+-e .
+uvicorn>=0.15.0
+pytest>=6.0.0
+pytest-asyncio>=0.20.0
+httpx>=0.24.0
+black>=22.0.0
+flake8>=4.0.0
+build>=1.0.0
+twine>=4.0.0
+hatchling>=1.21.0

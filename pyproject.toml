@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fastapi-auto-router"
+version = "0.1.0"
+description = "Automatic router configuration for FastAPI based on filesystem structure"
+readme = "README.md"
+authors = [{ name = "Tony Outlier", email = "Outlier@Chainer.Tech" }]
+license = { text = "MIT" }
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: FastAPI",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["fastapi", "router", "automatic", "configuration"]
+dependencies = [
+    "fastapi>=0.68.0",
+]
+requires-python = ">=3.7"
+
+[project.urls]
+Homepage = "https://github.com/forchain/fastapi-auto-router"
+Documentation = "https://github.com/forchain/fastapi-auto-router#readme"
+Repository = "https://github.com/forchain/fastapi-auto-router.git"
+Issues = "https://github.com/forchain/fastapi-auto-router/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fastapi_auto_router"]
