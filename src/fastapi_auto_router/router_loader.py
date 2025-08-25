@@ -34,7 +34,9 @@ class AutoRouter:
 
     def _convert_path_to_route(self, path: str) -> str:
         """Convert filesystem path to API route path"""
-        if path.endswith('.py'):
+        if path.endswith('/__init__.py'):
+            path = path[:-12]
+        elif path.endswith('.py'):
             path = path[:-3]
         parts = path.split('/')
         converted_parts = []
@@ -63,7 +65,7 @@ class AutoRouter:
         try:
             for root, _, files in os.walk(routers_path):
                 for file in files:
-                    if file.endswith('.py') and not file.startswith('__'):
+                    if file.endswith('.py'):
                         file_path = os.path.join(root, file)
                         
                         # Convert file path to route path
