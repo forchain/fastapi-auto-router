@@ -59,7 +59,12 @@ class AutoRouter:
 
     def load_routers(self) -> None:
         """Load all routers from the specified directory"""
-        routers_path = os.path.abspath(self.routers_dir)
+        # Resolve routers_path: use base_path if routers_dir is relative
+        if os.path.isabs(self.routers_dir):
+            routers_path = os.path.abspath(self.routers_dir)
+        else:
+            routers_path = os.path.abspath(os.path.join(self.base_path, self.routers_dir))
+        
         sys.path.insert(0, routers_path)
 
         try:
