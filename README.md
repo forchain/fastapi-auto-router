@@ -47,7 +47,8 @@ app = FastAPI()
 auto_router = AutoRouter(
     app=app,
     routers_dir="routers",  # Path to your routers directory
-    api_prefix="/api/v1"  # Optional: prefix for all routes
+    api_prefix="/api/v1",  # Optional: prefix for all routes
+    base_path=None  # Optional: base path for resolving routers_dir (default: current working directory)
 )
 auto_router.load_routers()
 ```
@@ -63,7 +64,37 @@ This will create the following routes:
 - Converts underscores to hyphens in route paths
 - Supports path parameters using {parameter_name} folders
 - Customizable API prefix
+- Flexible path resolution with `base_path` parameter
 - Works with any FastAPI application
+
+## Configuration Options
+
+### base_path
+
+The `base_path` parameter allows you to specify the directory where `routers_dir` is located. This is useful when your router files are not in the current working directory.
+
+**Behavior:**
+- If `routers_dir` is a relative path: the final path will be `base_path/routers_dir`
+- If `routers_dir` is an absolute path: `base_path` is ignored and `routers_dir` is used as-is
+
+**Example:**
+
+```python
+from fastapi import FastAPI
+from fastapi_auto_router import AutoRouter
+from pathlib import Path
+
+app = FastAPI()
+
+# Use base_path to specify where routers directory is located
+auto_router = AutoRouter(
+    app=app,
+    routers_dir="routers",
+    api_prefix="/api/v1",
+    base_path=str(Path(__file__).parent)  # Resolve routers relative to current file
+)
+auto_router.load_routers()
+```
 
 ## License
 
